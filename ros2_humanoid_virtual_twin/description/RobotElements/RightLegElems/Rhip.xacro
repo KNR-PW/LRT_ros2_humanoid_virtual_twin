@@ -18,12 +18,23 @@
             </geometry>
             <material name="grey"/>
         </visual>
-        <collision>
+        <xacro:if value="$(arg use_simple_collision)">
+            <collision>
+            <origin xyz="-0.022 -0.003 -0.0168" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.101 0.05 0.0626"/>
+            </geometry>
+            </collision>
+        </xacro:if>
+
+        <xacro:unless value="$(arg use_simple_collision)">
+            <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
                 <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Hip-Collision.stl"/>
             </geometry>
-        </collision>
+            </collision>
+        </xacro:unless>
         <inertial>
             <origin xyz="-20.881e-3	-0.167e-3	-14.849e-3" rpy="0 0 0"/>
             <mass value="0.294"/>
