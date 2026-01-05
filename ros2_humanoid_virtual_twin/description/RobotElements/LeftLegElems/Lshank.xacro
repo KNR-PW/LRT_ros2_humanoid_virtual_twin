@@ -20,9 +20,9 @@
       </visual>
       <xacro:if value="$(arg use_simple_collision)">
         <collision>
-          <origin xyz="0.0035 0 -0.064" rpy="0 0 0"/>
+          <origin xyz="0.0023 0 -0.033" rpy="0 0 0"/>
           <geometry>
-            <box size="0.035 0.051 0.15599208"/>
+            <box size="0.045 0.058 0.07"/>
           </geometry>
         </collision>
       </xacro:if>
