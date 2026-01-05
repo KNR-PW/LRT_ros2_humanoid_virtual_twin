@@ -19,8 +19,10 @@ def generate_launch_description():
     # Use xacro to process the file
     xacro_file = os.path.join(get_package_share_directory(pkg_name),file_subpath)
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'true'})
-
+    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 
+                                     'use_gazebo_joint_physics_coefficients': 'false', 
+                                     'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'false',
+                                     'use_simple_collision' : 'false'})
 
     # Configure the node
     node_robot_state_publisher = Node(
