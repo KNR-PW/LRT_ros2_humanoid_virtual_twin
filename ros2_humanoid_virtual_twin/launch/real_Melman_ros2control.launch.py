@@ -30,7 +30,7 @@ def generate_launch_description():
     robot_description = os.path.join(get_package_share_directory(
         package_name), "description", robot_name + ".urdf.xacro")
     doc = xacro.parse(open(robot_description))
-    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'false'})
+    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'false', 'use_simple_collision' : 'false'})
     params = {'robot_description': doc.toxml()}
 
     controller_config = os.path.join(

@@ -15,5 +15,8 @@
     <xacro:arg name="use_gazebo_joint_physics_coefficients" default="true"/>
     <xacro:arg name="use_URDF_joint_dynamics_coefficients" default="true"/>
     <!-- Xacro argument that defines whether to use simulation or to control the real robot -->
-    <xacro:arg name="use_gazebo" default="true"/>      
+    <xacro:arg name="use_gazebo" default="true"/>
+
+    <!-- Xacro argument that defines whether to use primitive collison shapes instead of stl ones -->
+    <xacro:arg name="use_simple_collision" default="false" />
 </robot>
