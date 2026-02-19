@@ -19,22 +19,22 @@
             <material name="grey"/>
         </visual>
         <xacro:if value="$(arg use_simple_collision)">
-            <collision>
-            <origin xyz="-0.003 0 -0.01200198" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.134 0.072 0.05199603"/>
-            </geometry>
-            </collision>
-        </xacro:if>
+        <collision>
+          <origin xyz="-0.003 0 -0.0325" rpy="0 0 0"/>
+          <geometry>
+            <box size="0.134 0.072 0.011"/>
+          </geometry>
+        </collision>
+      </xacro:if>
 
-        <xacro:unless value="$(arg use_simple_collision)">
-            <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Foot-collision.stl"/>
-            </geometry>
-            </collision>
-        </xacro:unless>
+      <xacro:unless value="$(arg use_simple_collision)">
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Foot-collision.stl"/>
+          </geometry>
+        </collision>
+      </xacro:unless>
         <inertial>
             <origin xyz="-5.077e-3	0	-30.402e-3" rpy="0 0 0"/>
             <mass value="0.075"/>
