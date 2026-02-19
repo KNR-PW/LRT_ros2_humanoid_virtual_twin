@@ -44,7 +44,7 @@ def generate_launch_description():
                               'description',
                               'robot.urdf.xacro')
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'true', 'use_URDF_joint_dynamics_coefficients': 'true', 'use_gazebo': 'true'})
+    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'true', 'use_URDF_joint_dynamics_coefficients': 'true', 'use_gazebo': 'true', 'use_simple_collision' : 'false'})
     params = {'robot_description': doc.toxml(), 'use_sim_time': True}
 
     node_robot_state_publisher = Node(
