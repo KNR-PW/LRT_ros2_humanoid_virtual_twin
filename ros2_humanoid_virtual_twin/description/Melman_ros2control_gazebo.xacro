@@ -3,7 +3,7 @@
     <ros2_control name="Melman_ros2control_gazebo" type="system">
         <hardware>
             <xacro:if value="$(arg use_gazebo)">
-                <plugin>gazebo_ros2_control/GazeboSystem</plugin>                   <!-- ZMIANA -->
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>                   <!-- ZMIANA -->
             </xacro:if>
             <xacro:unless value="$(arg use_gazebo)">
                 <plugin>dynamixel_hardware/DynamixelHardware</plugin>               <!-- paczka Dynamixel Hardware -->
