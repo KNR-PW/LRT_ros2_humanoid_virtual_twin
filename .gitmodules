@@ -7,7 +7,3 @@
 [submodule "dependencies/dynamixel-workbench-msgs"]
 	path = dependencies/dynamixel-workbench-msgs
 	url = https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
-[submodule "dependencies/gazebo_ros2_control"]
-	path = dependencies/gazebo_ros2_control
-	url = https://github.com/ros-controls/gazebo_ros2_control.git
-	branch = humble
