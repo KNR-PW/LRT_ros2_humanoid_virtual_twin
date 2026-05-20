@@ -1,14 +1,18 @@
 # knr_ros2_humanoid_virtual_twin
 The repository contains ROS2 files to simulate Melman humanoid robot in Gazebo simulator. It also has files to run a real robot.
 
-The repository contains packages from outside repositories:
+This repository uses Git submodules to manage external dependencies.
 
--https://github.com/ROBOTIS-GIT/dynamixel-workbench
+- [dynamixel_hardware](https://github.com/youtalk/dynamixel_hardware) 
+- [dynamixel-workbench](https://github.com/ROBOTIS-GIT/dynamixel-workbench) 
+- [dynamixel-workbench-msgs](https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs) 
 
--https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs
+Note: `gazebo_ros2_control` is managed as a system dependency.
 
--https://github.com/ros-controls/gazebo_ros2_control
 
--https://github.com/dynamixel-community/dynamixel_hardware
+### Cloning the repository
 
-Since their precise version has to be installed they are here on the repository.
+To download the repository along with all required submodules, use the following command:
+
+```bash
+git clone --recurse-submodules https://github.com/KNR-PW/LRT_ros2_humanoid_virtual_twin.git

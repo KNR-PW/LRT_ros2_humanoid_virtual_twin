@@ -3,10 +3,10 @@
     <ros2_control name="Melman_ros2control_gazebo" type="system">
         <hardware>
             <xacro:if value="$(arg use_gazebo)">
-                <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>                   <!-- ZMIANA -->
             </xacro:if>
             <xacro:unless value="$(arg use_gazebo)">
-                <plugin>dynamixel_hardware/DynamixelHardware</plugin>
+                <plugin>dynamixel_hardware/DynamixelHardware</plugin>               <!-- paczka Dynamixel Hardware -->
                 <param name="usb_port">/dev/ttyUSB0</param>
                 <param name="baud_rate">57600</param>
                 <param name="use_dummy">true</param>
@@ -525,7 +525,7 @@
 
     <xacro:if value="$(arg use_gazebo)">
         <gazebo>
-        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">           <!-- ZMIANA -->
                 <robot_param>robot_description</robot_param>
                 <robot_param_node>robot_state_publisher</robot_param_node>
                 <parameters>$(find ros2_humanoid_virtual_twin)/controllers/controllers.yaml</parameters>

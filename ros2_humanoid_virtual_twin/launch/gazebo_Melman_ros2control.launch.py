@@ -18,7 +18,7 @@ from ament_index_python.packages import get_package_share_directory
 
 
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -31,10 +31,14 @@ def generate_launch_description():
     world_file_name = 'withoutmelman.world'
     world = os.path.join(get_package_share_directory('ros2_humanoid_virtual_twin'),
                          'worlds', world_file_name)
+    
+# --- ZMIANA 2: Nowe wywołanie Gazebo (ros_gz_sim) ---
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-                launch_arguments={'pause': 'true', 'world': world}.items()
+                    get_package_share_directory('ros_gz_sim'), 'launch'), '/gz_sim.launch.py']),
+                launch_arguments={
+                    'gz_args': ['-r -v 4 ' + world], 
+                    'on_exit_shutdown': 'true'}.items()
              )
 
     package_name = os.path.join(
@@ -54,9 +58,10 @@ def generate_launch_description():
         parameters=[params]
     )
 
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
+# --- ZMIANA 3: Nowy węzeł spawnujący (create zamiast spawn_entity.py) ---
+    spawn_entity = Node(package='ros_gz_sim', executable='create',
                         arguments=['-topic', 'robot_description',
-                                   '-entity', 'Melman'],
+                                   '-name', 'Melman'], # Zmiana flagi z -entity na -name
                         output='screen')
 
     load_joint_state_broadcaster = ExecuteProcess(
@@ -75,7 +80,14 @@ def generate_launch_description():
         output='screen'
     )
 
+    gazebo_resource_path = SetEnvironmentVariable(
+            name='GZ_SIM_RESOURCE_PATH',
+            value=os.path.join(get_package_share_directory('ros2_humanoid_virtual_twin'), 'models')     
+        )
+
     return LaunchDescription([
+        gazebo_resource_path,
+        
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
